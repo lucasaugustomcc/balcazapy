@@ -252,7 +252,7 @@ class WorkflowTask(object):
                         with proc.raven as raven:
                             raven.group >> 'net.sf.taverna.t2.core'
                             raven.artifact >> 'workflowmodel-impl'
-                            raven.version >> '1.4'
+                            raven.version >> '1.5'
                         proc['class'] >> 'net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Parallelize'
                         with proc.configBean(encoding="xstream"):
                             with xml.namespace() as Parallelize:
@@ -262,7 +262,7 @@ class WorkflowTask(object):
                         with proc.raven as raven:
                             raven.group >> 'net.sf.taverna.t2.core'
                             raven.artifact >> 'workflowmodel-impl'
-                            raven.version >> '1.4'
+                            raven.version >> '1.5'
                         proc['class'] >> 'net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ErrorBounce'
                         with proc.configBean(encoding="xstream"):
                             with xml.namespace() as ErrorBounce:
@@ -271,7 +271,7 @@ class WorkflowTask(object):
                         with proc.raven as raven:
                             raven.group >> 'net.sf.taverna.t2.core'
                             raven.artifact >> 'workflowmodel-impl'
-                            raven.version >> '1.4'
+                            raven.version >> '1.5'
                         proc['class'] >> 'net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Failover'
                         with proc.configBean(encoding="xstream"):
                             with xml.namespace() as Failover:
@@ -280,7 +280,7 @@ class WorkflowTask(object):
                         with proc.raven as raven:
                             raven.group >> 'net.sf.taverna.t2.core'
                             raven.artifact >> 'workflowmodel-impl'
-                            raven.version >> '1.4'
+                            raven.version >> '1.5'
                         proc['class'] >> 'net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Retry'
                         with proc.configBean(encoding="xstream"):
                             with xml.namespace() as Retry:
@@ -293,7 +293,7 @@ class WorkflowTask(object):
                         with proc.raven as raven:
                             raven.group >> 'net.sf.taverna.t2.core'
                             raven.artifact >> 'workflowmodel-impl'
-                            raven.version >> '1.4'
+                            raven.version >> '1.5'
                         proc['class'] >> 'net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Invoke'
                         with proc.configBean(encoding="xstream"):
                             with xml.namespace() as Invoke:

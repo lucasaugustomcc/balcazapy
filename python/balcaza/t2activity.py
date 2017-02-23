@@ -31,7 +31,7 @@ class Activity(object):
 
     activityGroup = 'net.sf.taverna.t2.activities'
     activityArtifact = 'stringconstant-activity'
-    activityVersion = '1.4'
+    activityVersion = '1.5'
     activityClass = 'net.sf.taverna.t2.activities.stringconstant.StringConstantActivity'
     configEncoding = 'xstream'
 
@@ -386,12 +386,14 @@ def getUUID():
 class ExternalToolActivity(Activity):
 
     activityArtifact = 'external-tool-activity'
-    activityVersion = '1.5-SNAPSHOT'
+    activityVersion = '1.5'
     activityClass = 'net.sf.taverna.t2.activities.externaltool.ExternalToolActivity'
 
-    def __init__(self, command, inputMap=None, outputMap=None, **kw):
+    def __init__(self, command, staticScriptCode=None, staticScriptName=None, inputMap=None, outputMap=None, **kw):
         Activity.__init__(self, **kw)
         self.command = command
+        self.staticScriptCode = staticScriptCode
+        self.staticScriptName = staticScriptName
         self.inputMap = inputMap or {}
         self.outputMap = outputMap or {}
 
@@ -426,7 +428,15 @@ class ExternalToolActivity(Activity):
                     conf.REs
                     conf.queue__preferred
                     conf.queue__deny
-                    conf.static__inputs
+                    with conf.static__inputs:
+                        with conf.de.uni__luebeck.inb.knowarc.usecases.ScriptInputStatic:
+                            conf.tag >>  self.staticScriptName
+                            conf.file >> T2Boolean[True]
+                            conf.tempFile >> T2Boolean[False]
+                            conf.binary >> T2Boolean[False]
+                            conf.charsetName >> 'UTF-8'
+                            conf.forceCopy >> T2Boolean[False]
+                            conf.content({'class': 'string'}) >> self.staticScriptCode
                     with conf.inputs:
                         for name, type in self.inputs.items():
                             with conf.entry:
